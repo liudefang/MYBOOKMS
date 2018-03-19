@@ -43,6 +43,7 @@ class AccountForm(forms.ModelForm):
 class RegisterForm(forms.Form):
     email = forms.EmailField(label=_("邮件"),max_length=30,widget=forms.TextInput(attrs={'size':30,}))
     password = forms.CharField(label=_("密码"),max_length=30,widget=forms.PasswordInput(attrs={'size':20,}))
+    newpassword = forms.CharField(label=_("确认密码"), max_length=30, widget=forms.PasswordInput(attrs={'size': 20, }))
     username = forms.CharField(label=_("昵称"),max_length=30,widget=forms.TextInput(attrs={'size':20,}))
 
     def clean_username(self):

@@ -46,7 +46,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'MYBOOKMS.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(os.path.dirname(__file__), '..', 'templates').replace('\\','/'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'MYBOOKMS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': '10.1.2.71',
+        'HOST': '192.168.159.128',
         'PORT': '3306',
         'NAME': 'bookms',
         'USER': 'bookms',

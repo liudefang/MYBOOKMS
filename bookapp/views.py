@@ -2,7 +2,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login ,logout as auth_logout
 from django.http import HttpResponse,HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.utils.translation import ugettext_lazy as _
 from django.template import RequestContext
 from django.template.loader import get_template
@@ -26,24 +26,25 @@ def index(request):
 
 
 '''注册视图'''
-def register(request):
 
-    template_var={}
-    form = RegisterForm()
-    if request.method == "POST":
-        form =RegisterForm(request.POST.copy())
+
+
+
+def register(request):
+    form=RegisterForm()
+    if request.method=="POST":
+        form=RegisterForm(request.POST.copy())
         if form.is_valid():
-            email = form.clean_data["email"]
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
-            user = User.objects.create_user(username,email,password)
+            newpassword = form.cleaned_data["newpassword"]
+            email = form.cleaned_data["email"]
+            if password != newpassword:
+                return HttpResponse('重复登录密码与登录密码不一致');
+            user = User.objects.create(email=email, password=password,username=username)
             user.save()
-            _login(request,username,password) #注册完毕，直接登录
-            return HttpResponseRedirect('/bookapp/book/list')
-    template_var["form"] = form
-    t = get_template('registration/register.html')
-    c = RequestContext(request,locals())
-    return HttpResponse(t.render(c))
+            return render(request,'success.html',{'username':username});
+    return render(request,'registration/register.html',{'form':form});
 
 '''登录视图'''
 def login(request):
@@ -54,9 +55,10 @@ def login(request):
         if form.is_valid():
             if(True == _login(request,form.cleaned_data["username"],form.cleaned_data["password"])):
                 return HttpResponseRedirect('/bookapp/book/list/')
-    t = get_template('registration/login.html')
-    c = RequestContext(request,locals())
-    return HttpResponse(t.render(c))
+    #t=get_template('registration/login.html')
+    #c = RequestContext(request, locals())
+    else:
+        return render(request,'registration/login.html',{'error':'用户名或密码错误'})
 
 
 '''登陆核心方法'''
