@@ -15,11 +15,13 @@
         <p class="input-group">
             <span class="input-group-addon"><span class="icon-user"></span>用户名：</span>
             <input type="text" class="form-control input-lg" name="username" placeholder="用户名" />
+            <span style="color:red;"> {{form.username.errors}}</span>
         </p>
 
         <p class="input-group">
             <span class="input-group-addon"><span class="icon-lock"></span>密 码：</span>
             <input type="password" class="form-control input-lg" name="password"placeholder="密码"/>
+            <span style="color:red;"> {{form.password.errors}}</span>
         </p>
 
         <p class="help-block text-center">

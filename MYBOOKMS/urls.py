@@ -37,7 +37,7 @@ urlpatterns = [
     # Uncomment the next line to enable the admin:
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.welcome),
-    url(r'^welcome$', views.welcome),
+    url(r'^welcome$', views.welcome,name="welcome"),
 
     url(r'^accounts/index$', views.index,name="accounts_index"),
     url(r'^accounts/register$', views.register,name="register"),

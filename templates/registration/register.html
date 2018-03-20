@@ -24,11 +24,13 @@
         <p class="input-group">
             <span class="input-group-addon"><span class="icon-envelope"></span>邮件地址： </span>
             <input  type="email" class="form-control input-lg" name="email"placeholder="eg.abc@139.com"/>
+            <span style="color:red;"> {{form.email.errors}}</span>
         </p>
 
         <p class="input-group">
             <span class="input-group-addon"><span class="icon-user"></span>用户名： </span>
             <input type="text" class="form-control input-lg" name="username" placeholder="用户名" autocomplete="off" />
+            <span style="color:red;"> {{form.username.errors}}</span>
         </p>
 
         <p class="input-group">
@@ -38,7 +40,8 @@
 
          <p class="input-group">
             <span class="input-group-addon"><span class="icon-lock"></span>确认密码： </span>
-            <input type="password" class="form-control input-lg" name="newpassword"placeholder="密 码" autocomplete="off"/>
+            <input type="password" class="form-control input-lg" name="newpassword"placeholder="确认密码" autocomplete="off"/>
+             <span style="color:red;"> {{form.newpassword.errors}}</span>
         </p>
 
         <p class="help-block text-center">

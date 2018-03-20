@@ -54,16 +54,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href={% url "bookapp.views.welcome" %}>图书管理系统</a>
+            <a class="navbar-brand" href="{%url 'welcome' %}">图书管理系统</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class=""><a href={% url "bookapp.views.list_book" %}>图书信息</a></li>
-                <li><a href={% url "bookapp.views.manage_book" %}>图书管理</a></li>
+                <li class=""><a href="{%url 'welcome' %}">图书信息</a></li>
+                <li><a href="{%url 'welcome' %}">图书管理</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">我的图书馆 <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href={% url "bookapp.views.account_edit" %}>个人资料</a></li>
+                        <li><a href="{%url 'welcome' %}">个人资料</a></li>
                         <li class="divider"></li>
                         <li><a href="#">已借书籍</a></li>
                         <li class="divider"></li>
@@ -77,13 +77,13 @@
                 {% if request.user.is_authenticated %}
                     <div class="navbar-right">
                         <p class="navbar-text">欢迎您：<a href="#" class="navbar-link">{{ request.user.username }}</a></p>
-                        <a href="{%url "logout"%}" type="submit" class="btn btn-default navbar-btn">注 销</a>
+                        <a href="{%url 'logout'%}" type="submit" class="btn btn-default navbar-btn">注 销</a>
                     </div><!--/.navbar-collapse -->
                 {% else %}
                     <div class="navbar-right">
-                        {#<a href="{%url "login"%}" type="submit" class="btn btn-default navbar-btn" >登 陆</a>#}
+                        {#<a href="{%url 'login'%}" type="submit" class="btn btn-default navbar-btn" >登 陆</a>#}
                         <a class="btn btn-default navbar-btn"  data-toggle="modal" data-target="#LoginModal">登 陆</a>
-                        {#                        <a href="{%url "register"%}" type="submit" class="btn btn-default navbar-btn ">注 册</a>#}
+                        {#                        <a href="{%url 'register'%}" type="submit" class="btn btn-default navbar-btn ">注 册</a>#}
                         <a class="btn btn-default navbar-btn"  data-toggle="modal" data-target="#RegisterModal">注 册</a>
                     </div><!--/.navbar-collapse -->
                 {% endif %}
