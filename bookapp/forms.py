@@ -88,7 +88,7 @@ class LoginForm(forms.Form):
     def clean_password(self):
         '''验证密码是否正确'''
         password = User.objects.filter(password__iexact=self.cleaned_data["password"])
-        if  password:
+        if  not password:
             return self.cleaned_data["password"]
         raise forms.ValidationError(_("密码错误!"))
 

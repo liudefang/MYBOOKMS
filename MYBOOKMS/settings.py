@@ -79,7 +79,8 @@ WSGI_APPLICATION = 'MYBOOKMS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': '10.1.2.71',
+        #'HOST': '10.1.2.71',
+        'HOST': '192.168.159.128',
         'PORT': '3306',
         'NAME': 'bookms',
         'USER': 'bookms',

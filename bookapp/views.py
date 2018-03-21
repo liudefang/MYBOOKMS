@@ -8,8 +8,10 @@ from django.template.context_processors import csrf
 from django.utils.translation import ugettext_lazy as _
 from django.template import RequestContext
 from django.template.loader import get_template
-
+from django.contrib import auth
 #首页，登录页，注册页面
+
+
 from bookapp.forms import *
 
 
@@ -41,7 +43,7 @@ def register(request):
                # return HttpResponse('确认登录密码与登录密码不一致');
             user = User.objects.create(email=email, password=password,username=username)
             user.save()
-            _login(request, username, password)  # 注册完毕 直接登陆
+            #_login(request, username, password)  # 注册完毕 直接登陆
             return HttpResponseRedirect('/book/list/')
     template_var["form"] = form
     return HttpResponse(render(request,'registration/register.html',{'form':template_var["form"]}));
@@ -49,7 +51,7 @@ def register(request):
 
 
 '''登录视图'''
-'''def login(request):
+def login(request):
     template_var = {}
     form = LoginForm()
     if request.method == 'POST':
@@ -61,11 +63,11 @@ def register(request):
     #c = RequestContext(request, locals())
 
     template_var["form"] = form
-    return HttpResponse(render(request, 'registration/login.html', {'form': template_var["form"]}));'''
+    return HttpResponse(render(request, 'registration/login.html', {'form': template_var["form"]}));
 
 
 '''登录核心方法'''
-'''def _login(request,username,password):
+def _login(request,username,password):
     ret = False
     user = authenticate(username=username,password=password)
     if user:
@@ -77,15 +79,27 @@ def register(request):
             messages.add_message(request,messages.INFO,_('登录失败!'))
     else:
         messages.add_message(request,messages.INFO,_('该用户不存在!'))
-    return ret'''
+    return ret
 
 
-
+'''def login(request):
+    
+    if request.method == 'POST':
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)  # 登录
+            request.session['user'] = username  # 将 session 信息记录到浏览器
+           # response = HttpResponseRedirect('/book/list/')
+            return HttpResponseRedirect('/book/list/')
+        else:
+            return HttpResponse(render(request, 'registration/login.html', {'error': 'username or password error!'}))'''
 
 '''注销视图'''
 def logout(request):
     auth_logout(request)
-    return HttpResponseRedirect('/book/list/')
+    return HttpResponseRedirect('/accounts/login')
 
 '''编辑个人信息'''
 def account_edit(request):
@@ -166,7 +180,7 @@ def list_book(request):
     if request.method == 'POST':
         form = LoginForm(request.POST.copy())
         if form.is_valid():
-            if(True == _login(request,form.cleaned_data["username"],form.cleaned_data["password"])):
+            #if(True == _login(request,form.cleaned_data["username"],form.cleaned_data["password"])):
                 return HttpResponseRedirect('/book/list/')
 
     form = RegisterForm()
@@ -178,7 +192,7 @@ def list_book(request):
             password = form.cleaned_data["password"]
             user = User.objects.create_user(username,email,password)
             user.save()
-            _login(request,username,password)  #注册完毕 直接登录
+            #_login(request,username,password)  #注册完毕 直接登录
             return HttpResponseRedirect('/book/list/')
 
     form = SearchForm()
