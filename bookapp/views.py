@@ -49,7 +49,7 @@ def register(request):
 
 
 '''登录视图'''
-def login(request):
+'''def login(request):
     template_var = {}
     form = LoginForm()
     if request.method == 'POST':
@@ -61,11 +61,11 @@ def login(request):
     #c = RequestContext(request, locals())
 
     template_var["form"] = form
-    return HttpResponse(render(request, 'registration/login.html', {'form': template_var["form"]}));
+    return HttpResponse(render(request, 'registration/login.html', {'form': template_var["form"]}));'''
 
 
 '''登录核心方法'''
-def _login(request,username,password):
+'''def _login(request,username,password):
     ret = False
     user = authenticate(username=username,password=password)
     if user:
@@ -77,7 +77,9 @@ def _login(request,username,password):
             messages.add_message(request,messages.INFO,_('登录失败!'))
     else:
         messages.add_message(request,messages.INFO,_('该用户不存在!'))
-    return ret
+    return ret'''
+
+
 
 
 '''注销视图'''
