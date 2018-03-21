@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.png">
+    <link rel="shortcut icon" href="/static/img/favicon.png">
 
     <title>BMS</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/bootstrap.icon-large.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/bootstrap.icon-large.min.css" rel="stylesheet">
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -23,7 +23,7 @@
     <![endif]-->
 
     <!-- Custom styles for this template -->
-    <link href="{{ STATIC_URL }}css/carousel.css" rel="stylesheet">
+    <link href="/static/css/carousel.css" rel="stylesheet">
 
     <style>
         {#        body{#}
@@ -58,12 +58,12 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class=""><a href="{%url 'welcome' %}">图书信息</a></li>
-                <li><a href="{%url 'welcome' %}">图书管理</a></li>
+                <li class=""><a href="{%url 'book:list_book' %}">图书信息</a></li>
+                <li><a href="{%url 'book:manage_book' %}">图书管理</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">我的图书馆 <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{%url 'welcome' %}">个人资料</a></li>
+                        <li><a href="{%url 'edit' %}">个人资料</a></li>
                         <li class="divider"></li>
                         <li><a href="#">已借书籍</a></li>
                         <li class="divider"></li>
@@ -106,7 +106,7 @@
     <div class="carousel-inner">
         <div class="item active">
             {#            <img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">#}
-            <img alt="" src="{{ STATIC_URL }}img/pic1.jpg" />
+            <img alt="" src="/static/img/pic1.jpg" />
             <div class="container">
                 <div class="carousel-caption">
                     {#                    <h1>Example headline.</h1>#}
@@ -117,7 +117,7 @@
         </div>
         <div class="item">
             {#            <img data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Second slide" alt="Second slide">#}
-            <img alt="" src="{{ STATIC_URL }}img/pic2.jpg" />
+            <img alt="" src="/static/img/pic2.jpg" />
             <div class="container">
                 <div class="carousel-caption">
                     {#                    <h1>Another example headline.</h1>#}
@@ -128,7 +128,7 @@
         </div>
         <div class="item">
             {#            <img data-src="holder.js/900x500/auto/#555:#5a5a5a/text:Third slide" alt="Third slide">#}
-            <img alt="" src="{{ STATIC_URL }}img/pic3.jpg" />
+            <img alt="" src="/static/img/pic3.jpg" />
             <div class="container">
                 <div class="carousel-caption">
                     {#                    <h1>One more for good measure.</h1>#}
@@ -139,7 +139,7 @@
         </div>
         <div class="item">
             {#            <img data-src="holder.js/900x500/auto/#555:#5a5a5a/text:Third slide" alt="Third slide">#}
-            <img alt="" src="{{ STATIC_URL }}img/pic4.jpg" />
+            <img alt="" src="/static/img/pic4.jpg" />
             <div class="container">
                 <div class="carousel-caption">
                     {#                    <h1>One more for good measure.</h1>#}
@@ -162,14 +162,14 @@
     <!-- Three columns of text below the carousel -->
     <div class="row">
         <div class="col-lg-4">
-            <img class="img-circle" src="{{ STATIC_URL }}img/linuxtux.jpg" alt="Generic placeholder image">
+            <img class="img-circle" src="/static/img/linuxtux.jpg" alt="Generic placeholder image">
             <h2>Tux</h2>
             <p>Linux则常用来指基于Linux内核的完整操作系统，包括GUI组件和许多其他实用工具。由于这些支持用户空间的系统工具
                 和库主要由理查德·斯托曼于1983年发起的GNU计划提供，自由软件基金会提议将该组合系统命名为“GNU/Linux”。</p>
             {#            <p><a class="btn btn-default" href="http://zh.wikipedia.org/wiki/Linux" role="button">View details &raquo;</a></p>#}
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-            <img class="img-circle" src="{{ STATIC_URL }}img/FreeBSD.jpg" alt="Generic placeholder image">
+            <img class="img-circle" src="/static/img/FreeBSD.jpg" alt="Generic placeholder image">
             <h2>Daemon</h2>
             <p>FreeBSD是一种自由的类Unix操作系统，是由经过BSD、386BSD和4.4BSD发展而来的类Unix的一个重要分支。
                 FreeBSD拥有超过200名活跃开发者和上千名贡献者。FreeBSD被认为是自由操作系统中的不知名的巨人。
@@ -177,7 +177,7 @@
             {#            <p><a class="btn btn-default" href="http://zh.wikipedia.org/wiki/Freebsd#" role="button">View details &raquo;</a></p>#}
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-            <img class="img-circle" src="{{ STATIC_URL }}img/Javaduke.jpg" alt="Generic placeholder image">
+            <img class="img-circle" src="/static/img/Javaduke.jpg" alt="Generic placeholder image">
             <h2>Duke</h2>
             <p>Java是一种计算机编程语言，拥有跨平台、面向对象、泛型编程的特性，广泛应用于企业级Web应用开发和移动应用开发。</p>
             {#            <p><a class="btn btn-default" href="http://zh.wikipedia.org/wiki/Java" role="button">View details &raquo;</a></p>#}
@@ -209,7 +209,7 @@
                 女性的形象。</p>
         </div>
         <div class="col-md-6">
-            <img class="featurette-image img-responsive img-rounded" src="{{ STATIC_URL }}img/gonewithwind.jpg" alt="Generic placeholder image">
+            <img class="featurette-image img-responsive img-rounded" src="/static/img/gonewithwind.jpg" alt="Generic placeholder image">
         </div>
     </div>
 
@@ -217,7 +217,7 @@
 
     <div class="row featurette">
         <div class="col-md-6">
-            <img class="featurette-image img-responsive img-rounded" src="{{ STATIC_URL }}img/hongloumeng.jpg" alt="Generic placeholder image">
+            <img class="featurette-image img-responsive img-rounded" src="/static/img/hongloumeng.jpg" alt="Generic placeholder image">
         </div>
         <div class="col-md-6">
             <h2 class="featurette-heading"><a class="bookname" href="/bookapp/book/view/4/">红楼梦</a><span class="text-muted"></span></h2>
@@ -239,7 +239,7 @@
             </p>
         </div>
         <div class="col-md-6">
-            <img class="featurette-image img-responsive img-rounded" src="{{ STATIC_URL }}img/PrideandPrejudice.jpg" alt="Generic placeholder image">
+            <img class="featurette-image img-responsive img-rounded" src="/static/img/PrideandPrejudice.jpg" alt="Generic placeholder image">
         </div>
     </div>
 
@@ -262,7 +262,7 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-<script src="{{ STATIC_URL }}js/holder.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/holder.js"></script>
 </body>
 </html>

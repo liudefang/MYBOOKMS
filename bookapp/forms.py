@@ -81,14 +81,14 @@ class LoginForm(forms.Form):
     def clean_username(self):
         '''验证用户名是否正确'''
         users = User.objects.filter(username__iexact=self.cleaned_data["username"])
-        if users:
+        if  users:
             return self.cleaned_data["username"]
         raise forms.ValidationError(_("该用户不存在，请注册!"))
 
     def clean_password(self):
         '''验证密码是否正确'''
         password = User.objects.filter(password__iexact=self.cleaned_data["password"])
-        if password:
+        if  password:
             return self.cleaned_data["password"]
         raise forms.ValidationError(_("密码错误!"))
 

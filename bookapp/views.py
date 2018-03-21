@@ -41,7 +41,8 @@ def register(request):
                # return HttpResponse('确认登录密码与登录密码不一致');
             user = User.objects.create(email=email, password=password,username=username)
             user.save()
-            return render(request,'success.html',{'username':username});
+            _login(request, username, password)  # 注册完毕 直接登陆
+            return HttpResponseRedirect('/book/list/')
     template_var["form"] = form
     return HttpResponse(render(request,'registration/register.html',{'form':template_var["form"]}));
 
@@ -55,7 +56,7 @@ def login(request):
         form = LoginForm(request.POST.copy())
         if form.is_valid():
             if(True == _login(request,form.cleaned_data["username"],form.cleaned_data["password"])):
-                return HttpResponseRedirect('/bookapp/book/list/')
+                return HttpResponseRedirect('/book/list/')
     #t=get_template('registration/login.html')
     #c = RequestContext(request, locals())
 
@@ -63,7 +64,7 @@ def login(request):
     return HttpResponse(render(request, 'registration/login.html', {'form': template_var["form"]}));
 
 
-'''登陆核心方法'''
+'''登录核心方法'''
 def _login(request,username,password):
     ret = False
     user = authenticate(username=username,password=password)
@@ -82,8 +83,9 @@ def _login(request,username,password):
 '''注销视图'''
 def logout(request):
     auth_logout(request)
-    return HttpResponseRedirect('/bookapp/book/list/')
+    return HttpResponseRedirect('/book/list/')
 
+'''编辑个人信息'''
 def account_edit(request):
     try:
         account_instance = UserProfile.objects.get(id=request.user.id)
@@ -163,7 +165,7 @@ def list_book(request):
         form = LoginForm(request.POST.copy())
         if form.is_valid():
             if(True == _login(request,form.cleaned_data["username"],form.cleaned_data["password"])):
-                return HttpResponseRedirect('/bookapp/book/list/')
+                return HttpResponseRedirect('/book/list/')
 
     form = RegisterForm()
     if request.method == 'POST':
@@ -175,7 +177,7 @@ def list_book(request):
             user = User.objects.create_user(username,email,password)
             user.save()
             _login(request,username,password)  #注册完毕 直接登录
-            return HttpResponseRedirect('/bookapp/book/list/')
+            return HttpResponseRedirect('/book/list/')
 
     form = SearchForm()
     if request.method == 'POST':

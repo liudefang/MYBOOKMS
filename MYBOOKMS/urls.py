@@ -44,12 +44,7 @@ urlpatterns = [
     url(r'^accounts/login$', views.login,name="login"),
     url(r'^accounts/logout$', views.logout,name="logout"),
     url(r'^accounts/edit$', views.account_edit,name="edit"),
-
-
-
-
+    url(r'^book/',include('bookapp.urls', namespace="book")),
 ]
-
-
 
 urlpatterns += staticfiles_urlpatterns()
